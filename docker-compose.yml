@@ -49,22 +49,22 @@ services:
       - 7002:80
     command: npm start
 
-#  development:
-#    build:
-#      context: .
-#    container_name: development
-#    environment:
-#      - NODE_ENV_DOCKER=true
+  development:
+    build:
+      context: .
+    container_name: development
+    environment:
+      - NODE_ENV_DOCKER=true
 #      - PORT=4000
-##      - NODE_ENV=devopment
-##      - NODE_VERSION=10.10.0
-#    ports:
-##      - 5000:5000
-#      - 5001:4000
-#    volumes:
-#      - ./src:/app/src
-#      - ./package.json:/app/package.json
-##      - ./node_modules:/app/node_modules
-#    command: npm run start
-#    depends_on:
-#      - db
+#      - NODE_ENV=devopment
+#      - NODE_VERSION=10.10.0
+    ports:
+#      - 5000:5000
+      - 5001:5001
+    volumes:
+      - ./src:/app/src
+      - ./package.json:/app/package.json
+#      - ./node_modules:/app/node_modules
+    command: npm run start
+    depends_on:
+      - db

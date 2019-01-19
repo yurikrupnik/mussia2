@@ -5,7 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const Dotenv = require('dotenv-webpack');
+// const Dotenv = require('dotenv-webpack');
 const dotenv = require('dotenv');
 const sassVars = require('./src/theme.js');
 const sassFuncs = require('./sassHelper');
@@ -38,11 +38,6 @@ module.exports = (env, args) => {
             ]
         },
         target: 'web',
-        // node: {
-        //     // __dirname: false,
-        //     // __filename: true,
-        //     process: true,
-        // },
         resolve: {
             extensions: ['.json', '.js', '.jsx', '.css', '.scss']
         },
@@ -103,7 +98,6 @@ module.exports = (env, args) => {
                 'process.env.PORT': JSON.stringify(process.env.PORT),
 
             }),
-            // isProd ? new Dotenv() : () => {},
             new HtmlWebpackPlugin({
                 template: 'index.ejs',
                 filename: 'index.ejs',
@@ -129,7 +123,7 @@ module.exports = (env, args) => {
             //     openAnalyzer: false
             // }) : new BundleAnalyzerPlugin({})
         ],
-        devServer: {
+        devServer: { // when not prod - NODE_ENV_DOCKER taken from docker-compose env
             port: config.devPort,
             open: true,
             host: process.env.NODE_ENV_DOCKER ? '0.0.0.0' : 'localhost',

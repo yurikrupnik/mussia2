@@ -3,7 +3,7 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+// const Dotenv = require('dotenv-webpack');
 const dotenv = require('dotenv');
 const json = require('./package');
 const sassVars = require('./src/theme.js');
@@ -72,16 +72,13 @@ module.exports = (env, argv) => {
                 'process.env.PORT': JSON.stringify(process.env.PORT),
                 // 'process.env.HOST': JSON.stringify(process.env.HOST)
             }),
-            // isProd ? new Dotenv({
-            // //     // systemvars: true
-            // }) : () => {},
-            isProd ? new GenerateJsonPlugin('package.json', Object.assign({}, json, {
+            new GenerateJsonPlugin('package.json', Object.assign({}, json, {
                 main: filename,
                 scripts: {
                     start: `node ${filename}`
                 },
                 devDependencies: {}
-            })) : () => {},
+            })),
             argv.watch ? new NodemonPlugin({
                 script: path.resolve(__dirname, 'dist', filename),
                 watch: path.resolve(__dirname, 'dist', filename),

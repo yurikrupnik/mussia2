@@ -15,7 +15,6 @@ const assets = path.resolve(__dirname, 'assets');
 const route = express.Router();
 
 route.get('/*', render(App, routes));
-
 app.use(express.static(assets));
 app.use(morgan('dev'));
 app.use(express.json(), express.urlencoded({ extended: false }));
