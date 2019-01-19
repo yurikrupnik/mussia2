@@ -10,24 +10,13 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile.production
-#      args:
-#        - PORT=7000
-#        - HOST=http://localhost:6000
-#        - NODE_ENV=productiondpdo
-#        - NODE_ENV_DOCKER=true
     environment:
-#      - PORT=6000
-#      - HOST=http://localhost:6000
-#      - NODE_ENV=productiondpdo
+      - PORT=8000
       - NODE_ENV_DOCKER=true
       - DATABASE_URL=mongodb://db/react-boilerplate
-#    env_file:
-#      - prod.env
     container_name: fullstack-production
     ports:
-      - 8000:8000
-#      - 8000:7000
-#      - 8000:6000
+      - 9000:9000
     command: npm start
     depends_on:
       - db
@@ -55,18 +44,14 @@ services:
       context: .
     container_name: development
     environment:
+#      - PORT=8000
       - NODE_ENV_DOCKER=true
       - DATABASE_URL=mongodb://db/react-boilerplate
-#      - PORT=4000
-#      - NODE_ENV=devopment
-#      - NODE_VERSION=10.10.0
     ports:
-#      - 5000:5000
       - 5001:5001
+#      - 8001:8000
     volumes:
       - ./src:/app/src
-      - ./package.json:/app/package.json
-#      - ./node_modules:/app/node_modules
     command: npm run start
     depends_on:
       - db

@@ -1,8 +1,6 @@
 
 
-FROM node:10.10.0
-#ENV NODE_ENV_DOCKER=true
-#ARG NODE_ENV_DOCKER=true
+FROM node:10
 WORKDIR /app
 COPY package-lock.json package.json ./
 RUN npm install

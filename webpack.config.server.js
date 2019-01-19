@@ -3,23 +3,16 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
-// const Dotenv = require('dotenv-webpack');
 const dotenv = require('dotenv');
 const json = require('./package');
 const sassVars = require('./src/theme.js');
 const sassFuncs = require('./sassHelper');
 
 const filename = 'server.js';
-// console.log('process.env.PORT server webpack', process.env.PORT);
-// let config = dotenv.config();
-// console.log('config server', config);
-// console.log('process.env.PORT server webpack after dotenv', process.env.PORT);
 
 module.exports = (env, argv) => {
     const isProd = env ? !!env.prod : false;
     const isDebug = env ? !!env.debug : false;
-    // console.log('process.env.PORT server ', process.env.PORT);
-    // console.log('process.env.NODE_ENV_DOCKER', process.env.NODE_ENV_DOCKER);
     isProd ? dotenv.config() : require('./src/config');
     return {
         context: path.resolve(__dirname, 'src'),
@@ -69,8 +62,7 @@ module.exports = (env, argv) => {
         plugins: [
             new webpack.DefinePlugin({
                 'process.env.DEBUG': JSON.stringify(isDebug),
-                'process.env.PORT': JSON.stringify(process.env.PORT),
-                // 'process.env.HOST': JSON.stringify(process.env.HOST)
+                'process.env.PORT': JSON.stringify(process.env.PORT)
             }),
             new GenerateJsonPlugin('package.json', Object.assign({}, json, {
                 main: filename,

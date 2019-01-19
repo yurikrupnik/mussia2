@@ -4,26 +4,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-// const Dotenv = require('dotenv-webpack');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const dotenv = require('dotenv');
 const sassVars = require('./src/theme.js');
 const sassFuncs = require('./sassHelper');
 
-// let config = dotenv.config();
-// console.log('config client', config);
-
-
-module.exports = (env, args) => {
-    // console.log('env', env);
-    // console.log('args', args);
-
+module.exports = env => {
     const isProd = env ? !!env.prod : false;
     const isDebug = env ? !!env.debug : false;
     const config = isProd ? dotenv.config() : require('./src/config'); // eslint-disable-line global-require
-    // console.log('process.env.PORT client webpack clint', process.env.PORT);
-    // console.log('process.env.NODE_ENV_DOCKER', process.env.NODE_ENV_DOCKER);
-    // console.log('process.env.HOST', process.env.HOST);
 
     return {
         context: path.resolve(__dirname, 'src'),
@@ -95,8 +84,7 @@ module.exports = (env, args) => {
         plugins: [
             new webpack.DefinePlugin({
                 'process.env.DEBUG': JSON.stringify(isDebug),
-                'process.env.PORT': JSON.stringify(process.env.PORT),
-
+                'process.env.PORT': JSON.stringify(process.env.PORT)
             }),
             new HtmlWebpackPlugin({
                 template: 'index.ejs',
@@ -124,10 +112,10 @@ module.exports = (env, args) => {
             // }) : new BundleAnalyzerPlugin({})
         ],
         devServer: { // when not prod - NODE_ENV_DOCKER taken from docker-compose env
-            port: config.devPort,
+            port: config.port + 1,
             open: true,
             host: process.env.NODE_ENV_DOCKER ? '0.0.0.0' : 'localhost',
-            proxy: { '/': { target: config.host } }
+            proxy: { '/': { target: `http://localhost:${config.port}` } }
         }
     };
 };
