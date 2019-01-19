@@ -10,9 +10,7 @@ const host = `http://localhost:${port}`;
 const devPort = port + 1;
 const devHost = `http://localhost:${devPort}`;
 const baseURL = isProd || process.env.DEBUG ? host : devHost;
-const databaseUrl = process.env.NODE_ENV_DOCKER && JSON.parse(process.env.NODE_ENV_DOCKER)
-    ? 'mongodb://db/react-boilerplate'
-    : 'mongodb://localhost/react-boilerplate';
+const databaseUrl = process.env.DATABASE_URL || 'mongodb://localhost/react-boilerplate';
 // console.log('process.env.NODE_ENV_DOCKER config file', process.env.NODE_ENV_DOCKER);
 // console.log('process.env.NODE_ENV config file', process.env.NODE_ENV);
 // console.log('process.env.PORT config file', process.env.PORT);

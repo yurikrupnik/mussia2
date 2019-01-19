@@ -20,6 +20,7 @@ services:
 #      - HOST=http://localhost:6000
 #      - NODE_ENV=productiondpdo
       - NODE_ENV_DOCKER=true
+      - DATABASE_URL=mongodb://db/react-boilerplate
 #    env_file:
 #      - prod.env
     container_name: fullstack-production
@@ -55,6 +56,7 @@ services:
     container_name: development
     environment:
       - NODE_ENV_DOCKER=true
+      - DATABASE_URL=mongodb://db/react-boilerplate
 #      - PORT=4000
 #      - NODE_ENV=devopment
 #      - NODE_VERSION=10.10.0
