@@ -1,0 +1,14 @@
+FROM node:10 as builder
+WORKDIR /app
+COPY .storybook ./.storybook
+COPY package.json package-lock.json ./
+RUN npm install
+COPY src ./src
+RUN npm run build:storybook
+
+FROM yurikrupnik/mussia-static-html
+WORKDIR /usr/src/app
+COPY --from=builder /app/storybook-static ./storybook-static
+ENV ROOT_PATH storybook-static
+CMD npm start
+EXPOSE 80

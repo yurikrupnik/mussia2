@@ -1,0 +1,23 @@
+@import "./variables";
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-size: map_get($typography, 'fontSize');
+  @media (min-width: 479px) { /*map_get($breakpoints, 'tablet')*/
+    font-size: map_get($typography, 'fontSize') + 1px;
+  }
+  color: map_get($colors, 'mobile');
+  @media (min-width: map_get($breakpoints, 'desktop')) { /*map_get($breakpoints, 'tablet')*/
+    color: map_get($colors, 'desktop');
+  }
+  font-family: map_get($typography, 'font');
+}
+
+a {
+  text-decoration: none;
+}
+

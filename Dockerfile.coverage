@@ -1,0 +1,15 @@
+FROM node:10 as builder
+WORKDIR /app
+COPY package-lock.json package.json ./
+RUN npm install
+COPY .babelrc .
+COPY jestsetup.js .
+COPY src ./src
+RUN npm run test:coverage
+
+FROM yurikrupnik/mussia-static-html
+WORKDIR /usr/src/app
+COPY --from=builder /app/coverage .
+ENV ROOT_PATH lcov-report
+CMD npm start
+EXPOSE 80

@@ -54,8 +54,12 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
+# dotenv environment variables file - remove that after installing
+#.env
 
 # next.js build output
 .next
+.idea/
+dist
+.cache
+__snapshots__

@@ -1,0 +1,22 @@
+
+:global {
+  @import "reset";
+
+  @import "~flexboxgrid";
+
+  .root {
+    color: red
+  }
+
+  .root:hover {
+    color: blue;
+  }
+}
+
+.root {
+  color: blue;
+}
+
+.root:hover {
+  color: purple;
+}
