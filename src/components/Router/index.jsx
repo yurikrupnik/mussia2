@@ -10,7 +10,7 @@ const Router = ({ children, routes }) => (
 );
 
 Router.propTypes = {
-    children: PropTypes.element.isRequired,
+    // children: PropTypes.element.isRequired,
     routes: PropTypes.arrayOf(PropTypes.shape({
         path: PropTypes.string.isRequired
     })).isRequired

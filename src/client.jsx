@@ -4,8 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './components/App';
 import './styles/_index.scss';
 import config from './config';
-console.log('config', config);
-
 
 const renderMethod = config.isProd ? hydrate : render;
 

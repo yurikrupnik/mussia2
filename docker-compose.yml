@@ -11,21 +11,23 @@ services:
       context: .
       dockerfile: ./Dockerfile.production
     environment:
-      - PORT=8000
       - NODE_ENV_DOCKER=true
       - DATABASE_URL=mongodb://db/react-boilerplate
     container_name: fullstack-production
     ports:
-      - 9000:9000
+      - 7000:7000
     command: npm start
     depends_on:
       - db
 
-  storybook:
+  bundles:
     build:
       context: .
-      dockerfile: ./Dockerfile.storybook
-    container_name: storybook-production
+      dockerfile: ./Dockerfile.bundles
+    environment:
+      - NODE_ENV_DOCKER=true
+      - DATABASE_URL=mongodb://db/react-boilerplate
+    container_name: bundles-production
     ports:
       - 7001:80
     command: npm start
@@ -39,17 +41,25 @@ services:
       - 7002:80
     command: npm start
 
+  storybook:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.storybook
+    container_name: storybook-production
+    ports:
+      - 7003:80
+    command: npm start
+
   development:
     build:
       context: .
+      dockerfile: ./Dockerfile.dev
     container_name: development
     environment:
-#      - PORT=8000
       - NODE_ENV_DOCKER=true
       - DATABASE_URL=mongodb://db/react-boilerplate
     ports:
       - 5001:5001
-#      - 8001:8000
     volumes:
       - ./src:/app/src
     command: npm run start

@@ -1,7 +1,7 @@
 import express from 'express';
 import users from './users';
 import projects from './projects';
-// import auth from './auth';
+import auth from './auth';
 
 const route = express.Router();
 
@@ -9,7 +9,7 @@ const route = express.Router();
 route.use('/api', [
     users,
     projects,
-    // auth
+    auth
 ]);
 
 export default route;

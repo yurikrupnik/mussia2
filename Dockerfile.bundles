@@ -2,4 +2,19 @@ FROM node:10 as builder
 WORKDIR /app
 COPY package-lock.json package.json ./
 RUN npm install
+COPY .env .
+COPY .babelrc .
+COPY .eslintrc .
+COPY sassHelper.js .
+COPY webpack.config.server.js .
+COPY webpack.config.client.js .
+COPY src ./src
+RUN npm run build:client
+
+FROM yurikrupnik/mussia-static-html
+WORKDIR /usr/src/app
+COPY --from=builder /app/dist/assets/bundles-report ./bundles-report
+ENV ROOT_PATH bundles-report
+EXPOSE 80
+CMD ["npm", "start"]
 

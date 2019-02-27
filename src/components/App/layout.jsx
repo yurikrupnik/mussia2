@@ -5,12 +5,8 @@ import Router from '../Router/index';
 
 const Layout = ({ routes }) => (
     <Fragment>
-        <Router routes={routes}>
-            <Nav routes={routes} />
-        </Router>
-        <div>
-            default footer
-        </div>
+        <Nav routes={routes} />
+        <Router routes={routes} />
     </Fragment>
 );
 

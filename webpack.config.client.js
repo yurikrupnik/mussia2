@@ -106,6 +106,11 @@ module.exports = env => {
                 filename: !isProd ? '[name].css' : '[name].[hash].css',
                 chunkFilename: !isProd ? '[id].css' : '[id].[hash].css',
             }),
+            new BundleAnalyzerPlugin({
+                analyzerMode: 'static',
+                openAnalyzer: false,
+                reportFilename: 'bundles-report/index.html'
+            })
             // process.env.NODE_ENV_DOCKER ? new BundleAnalyzerPlugin({
             //     analyzerMode: 'static',
             //     openAnalyzer: false

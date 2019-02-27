@@ -5,9 +5,6 @@ import { Link } from 'react-router-dom';
 
 const MainNav = ({ routes }) => (
     <header>
-        {/*<button type="button" onClick={api.logout}>*/}
-            {/*logout*/}
-        {/*</button>*/}
         {routes.map(route => (
             <div key={route.key}>
                 <Link to={route.path}>

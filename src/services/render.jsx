@@ -3,14 +3,15 @@ import { StaticRouter, matchPath } from 'react-router-dom';
 import React from 'react';
 
 const render = (App, routes) => (req, response, next) => {
+    if (!App) {
+        return response.render('index', {title: '', html: '', appData: {}});
+    }
     const activeRoute = routes
         .find(route => matchPath(req.url, route)) || {};
     const promise = activeRoute.fetchInitialData
         ? activeRoute.fetchInitialData(req.url)
         : Promise.resolve([]);
-
-    console.log('activeRoute', activeRoute);
-
+    
     return promise
         .then((res) => {
             let appData = {};

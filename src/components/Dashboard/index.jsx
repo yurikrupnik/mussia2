@@ -11,11 +11,11 @@ function Dashboard() {
             <ProjectsConsumer render={projectsProps => (
                 <div>
                     <h2 className={styles.base}>
-                        sssss
+                        ss
                     </h2>
                     <List {...userProps} />
                     <List {...projectsProps} />
-                    <ThemesConsumer />
+                    <ThemesConsumer/>
                     <ThemesConsumer render={() => (
                         <div>
                             nuuuu
