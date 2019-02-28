@@ -1,14 +1,8 @@
 import React from 'react';
 import {Grid} from '@material-ui/core';
 
-
 const Item = React.memo(function (props) {
     const {id, onSelect, name, image, score} = props;
-    // console.log('props', props);
-    // console.log('props.onSelect', props.onSelect);
-
-    // console.log('item');
-
     return (
         <Grid
             item data-id={id} onClick={onSelect}
@@ -23,13 +17,9 @@ const Item = React.memo(function (props) {
 });
 
 const ShowsList = ({data = [], onSelect}) => {
-    // console.log('data ShowsList', data);
-    // console.log('onSelect', onSelect);
-
     return (
         <Grid container spacing={24}>
             {data.map(({score, show}) => {
-
                 const {image, id, name} = show;
                 if (!image) {
                     return false;
@@ -50,5 +40,4 @@ const ShowsList = ({data = [], onSelect}) => {
     );
 };
 
-// export default ShowsList;
 export default React.memo(ShowsList);

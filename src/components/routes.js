@@ -33,9 +33,9 @@ const MobxMovies = Loadable({
 //     loader: () => import(/* webpackChunkName: "projects" */ './Projects'),
 // });
 //
-// const Users = Loadable({
-//     loader: () => import(/* webpackChunkName: "users" */ './Users'),
-// });
+const Users = Loadable({
+    loader: () => import(/* webpackChunkName: "users" */ './Users'),
+});
 //
 // const Register = Loadable({
 //     loader: () => import(/* webpackChunkName: "register" */ './Register'),
@@ -82,11 +82,11 @@ const routes = [
     //     component: Projects,
     //     key: 'projects'
     // },
-    // {
-    //     path: '/users',
-    //     component: Users,
-    //     key: 'users'
-    // },
+    {
+        path: '/users',
+        component: Users,
+        key: 'users'
+    },
     {
         path: '/base',
         component: Movies,

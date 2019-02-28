@@ -6,6 +6,7 @@ import Dialog from '../Example/Dialog';
 
 const ContextMovies = () => {
     const shows = useContext(MoviesContext);
+// console.log('shows', shows.shows);
 
     const handleClick = useCallback((e) => {
         const data = shows.data.reduce((acc, next, i) => {
@@ -24,9 +25,9 @@ const ContextMovies = () => {
         <div>
             <button onClick={handleClick}>change first item name</button>
             <Header title="React Context Api" value={shows.search} onChange={shows.handleChange} />
-            <List data={shows.data} onSelect={shows.handleSelect} />
+            <List data={shows.shows} onSelect={shows.handleSelect} />
             <Dialog
-                isOpen={shows.modal}
+                isOpen={shows.open}
                 handleDialogClose={shows.toggleOpen}
                 showInfo={shows.selected}
             />

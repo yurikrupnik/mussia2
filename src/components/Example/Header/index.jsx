@@ -81,33 +81,32 @@ const PrimarySearchAppBara = React.memo(function (props) {
     );
 }, (prevProps, nextProps) => {
     if (nextProps.value !== prevProps.value) {
-        return true;
+        return false;
     }
-    return false;
+    return true;
 });
 
-class PrimarySearchAppBar extends React.PureComponent {
+class PrimarySearchAppBar extends React.Component {
 
-    // shouldComponentUpdate(nextProps, nextState, nextContext) {
-    //     if (nextProps.value !== this.props.value) {
-    //         console.log('value');
-    //
-    //         return true;
-    //     }
-    //     if (nextProps.title !== this.props.title) {
-    //         console.log('title');
-    //         return true;
-    //     }
-    //     if (nextProps.onChange !== this.props.onChange) {
-    //         console.log('onChange');
-    //         return true;
-    //     }
-    //     if (nextProps.classes !== this.props.classes) {
-    //         console.log('classes');
-    //         return true;
-    //     }
-    //     return false;
-    // }
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        if (nextProps.value !== this.props.value) {
+            // console.log('value');
+            return true;
+        }
+        // if (nextProps.title !== this.props.title) {
+        //     console.log('title');
+        //     return true;
+        // }
+        // if (nextProps.onChange !== this.props.onChange) {
+        //     console.log('onChange');
+        //     return true;
+        // }
+        // if (nextProps.classes !== this.props.classes) {
+        //     console.log('classes');
+        //     return true;
+        // }
+        return false;
+    }
 
     render() {
         const {classes, onChange, value, title} = this.props;
@@ -147,4 +146,4 @@ PrimarySearchAppBar.propTypes = {
     title: PropTypes.string
 };
 
-export default withStyles(styles)(PrimarySearchAppBar);
+export default withStyles(styles)(PrimarySearchAppBara);

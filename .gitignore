@@ -63,3 +63,4 @@ typings/
 dist
 .cache
 __snapshots__
+/src/services/render.jsx

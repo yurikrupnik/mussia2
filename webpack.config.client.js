@@ -120,7 +120,9 @@ module.exports = env => {
             port: config.port + 1,
             open: true,
             host: process.env.NODE_ENV_DOCKER ? '0.0.0.0' : 'localhost',
-            proxy: { '/': { target: `http://localhost:${config.port}` } }
+            proxy: {
+                '/': { target: `http://localhost:${config.port}` }
+            }
         }
     };
 };
