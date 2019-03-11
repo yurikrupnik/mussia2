@@ -10,7 +10,6 @@ import {
 } from '../methods';
 
 const route = express.Router();
-console.log('route', route);
 
 route.get(url, list(Model)); // array
 route.get(`${url}/:id`, find(Model)); // object
