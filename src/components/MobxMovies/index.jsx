@@ -213,11 +213,11 @@ class MobxMovies extends React.Component {
                 {/*<div>counter: {counter.count}</div>*/}
                 {/*<button onClick={this.handleInc}>+</button>*/}
                 {/*<button onClick={this.handleDec}>-</button>*/}
-                <TodoListView todoList={store} />
+                {/*<TodoListView todoList={store} />*/}
                 <TimerView state={new AppState()} />
                 <DevTools />
             </div>
-        )
+        );
     }
 
     // render() {
@@ -243,4 +243,3 @@ class MobxMovies extends React.Component {
 // };
 
 export default MobxMovies;
-

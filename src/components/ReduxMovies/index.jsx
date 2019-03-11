@@ -1,4 +1,5 @@
 import React, {Component, useCallback, useState} from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from '../Example/Header';
 import List from '../Example/List';
@@ -9,14 +10,28 @@ import { mapToProps as showsMapToProps, dispatchActions as showsActions } from '
 // import { setModalState } from '../../redux/feature/showInfo/showInfo.actions';
 // import api from "../../api/movies/api";
 
+const data = [
+    {
+        name: 'tal',
+        age: 12
+    },
+    {
+        name: 'tamar',
+        age: 12
+    },
+    {
+        name: 'asd',
+        age: 12
+    }
+];
+
 const ReduxMovies = (props) => {
     const { shows, toggleModal, setSearch, handleSelect } = props;
     console.log('props', props);
     return (
         <div>
-            <button onClick={toggleModal}>change first item name</button>
-            <Header title="Redux way" value={shows.query} onChange={setSearch}/>
-            <List data={shows.data} onSelect={handleSelect}/>
+            <Header title="Redux way" value={shows.query} onChange={setSearch} />
+            <List data={shows.data} onSelect={handleSelect} />
             <Dialog
                 isOpen={shows.modal}
                 handleDialogClose={toggleModal}
@@ -29,4 +44,3 @@ const ReduxMovies = (props) => {
 export default connect(showsMapToProps, showsActions)(ReduxMovies);
 
 // export default ReduxMovies;
-

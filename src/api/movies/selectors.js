@@ -14,4 +14,4 @@ export {
     mapToProps,
     dispatchActions,
     actions
-}
+};

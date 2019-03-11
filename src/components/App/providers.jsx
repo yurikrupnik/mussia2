@@ -1,4 +1,4 @@
-import { createElement } from 'react';
+import { memo, createElement } from 'react';
 import PropTypes from 'prop-types';
 
 const Providers = ({ children, providers }) => providers
@@ -9,4 +9,4 @@ Providers.propTypes = {
     providers: PropTypes.arrayOf(PropTypes.func).isRequired
 };
 
-export default Providers;
+export default memo(Providers);

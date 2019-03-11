@@ -16,7 +16,7 @@ const appServer = express();
 
 const assets = path.resolve(__dirname, 'assets');
 
-appServer.use(cors());
+// appServer.use(cors());
 webServer.use(express.static(assets));
 // webServer.use(morgan('dev'));
 webServer.use(express.json(), express.urlencoded({ extended: false }));
@@ -24,12 +24,12 @@ webServer.set('view engine', 'ejs');
 webServer.set('views', assets);
 webServer.use(render(App, routes));
 
-appServer.use(morgan('dev'));
-appServer.use(db(databaseUrl));
-appServer.use(passport(appServer)); // todo return that after docker tests
-appServer.use(api);
+webServer.use(morgan('dev'));
+webServer.use(db(databaseUrl));
+webServer.use(passport(appServer)); // todo return that after docker tests
+webServer.use(api);
 
-appServer.listen(appServerPort);
+// appServer.listen(appServerPort);
 server(webServer).listen(port, (err) => {
     if (err) {
         console.log('err', err); // eslint-disable-line no-console
