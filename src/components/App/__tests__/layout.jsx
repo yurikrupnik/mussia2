@@ -1,8 +1,9 @@
 import React from 'react';
+import { render, fireEvent, cleanup, waitForElement } from 'react-testing-library';
+import { Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import Layout from '../layout';
 import routes from '../../routes';
-
-jest.mock('../../routes'); // eslint-disable-line no-undef
 
 const {
     test,
@@ -10,8 +11,12 @@ const {
     shallow
 } = global;
 
-test('renders <Layout /> component', () => {
-    const wrapper = shallow(<Layout routes={routes} />);
-    // expect(wrapper.length).toBe(1);
-    expect(wrapper).toMatchSnapshot();
+test(`render ${Layout.name} Component`, () => {
+    const tree = (
+        <Router history={createBrowserHistory()}>
+            <Layout routes={routes} />
+        </Router>
+    );
+
+    render(tree);
 });

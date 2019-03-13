@@ -18,8 +18,6 @@ const PENDING = 'PENDING';
 const SUCCESS = 'SUCCESS';
 const FAIL = 'FAIL';
 
-
-
 export const SET_SEARCH = 'SET_SEARCH';
 export const SET_SELECTED = 'SET_SELECTED';
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
@@ -33,19 +31,19 @@ export const FETCH_SHOWS_INFO_SUCCESS = `${FETCH}_${selector}_INFO_${SUCCESS}`;
 
 
 // async action
-const fetchShows = query => dispatch => {
+const fetchShows = query => (dispatch) => {
     // dispatch(loading.toggle());
     api.fetch(query)
-        .then(res => {
+        .then((res) => {
             // dispatch(loading.toggle());
-            dispatch({type: FETCH_SHOWS_SUCCESS, payload: res});
+            dispatch({ type: FETCH_SHOWS_SUCCESS, payload: res });
         });
 };
 
-const fetchShowById = params => dispatch => {
-    dispatch({type: FETCH_SHOWS_INFO_PENDING, payload: params});
+const fetchShowById = params => (dispatch) => {
+    dispatch({ type: FETCH_SHOWS_INFO_PENDING, payload: params });
     dispatch(loading.toggle());
-    console.log('fetchShowById');
+    // console.log('fetchShowById');
 
     // return axios({
     //     method: 'get',
@@ -66,20 +64,25 @@ const fetchShowById = params => dispatch => {
     //     .catch(received_error(dispatch));
 };
 
-const setSearch = event => dispatch => {
+const setSearch = event => (dispatch) => {
     const { value } = event.target;
-    dispatch({type: SET_SEARCH, payload: value});
-    fetchShows(value)(dispatch);
+    dispatch({ type: SET_SEARCH, payload: value });
+    api.fetch(value)
+        .then((res) => {
+            dispatch(loading.toggle());
+            dispatch({ type: FETCH_SHOWS_SUCCESS, payload: res });
+        });
+    // fetchShows(value)(dispatch);
 };
 
-const toggleModal = () => dispatch => dispatch({type: TOGGLE_MODAL});
+const toggleModal = () => dispatch => dispatch({ type: TOGGLE_MODAL });
 
-const handleSelect = event => dispatch => {
-    const {dataset} = event.currentTarget;
-    const {id} = dataset;
+const handleSelect = event => (dispatch) => {
+    const { dataset } = event.currentTarget;
+    const { id } = dataset;
     api.getSelected(id)
-        .then(res => {
-            dispatch({type: SET_SELECTED, payload: res});
+        .then((res) => {
+            dispatch({ type: SET_SELECTED, payload: res });
             toggleModal()(dispatch);
         });
 };
@@ -88,4 +91,4 @@ export {
     toggleModal,
     setSearch,
     handleSelect
-}
+};

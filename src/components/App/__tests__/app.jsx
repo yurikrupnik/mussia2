@@ -1,8 +1,12 @@
 import React from 'react';
+import {Router} from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import {render, fireEvent, cleanup, waitForElement} from 'react-testing-library';
 import App from '../app';
 import routes from '../../routes';
 
-jest.mock('../../routes'); // eslint-disable-line no-undef
+// jest.mock('../../routes'); // eslint-disable-line no-undef
+afterEach(cleanup);
 
 const {
     it,
@@ -11,6 +15,12 @@ const {
 } = global;
 
 it('renders <App /> component', () => {
-    const wrapper = shallow(<App routes={routes} />);
-    expect(wrapper).toMatchSnapshot();
+
+    const tree = (
+        <Router history={createBrowserHistory()}>
+            <App routes={routes} />
+        </Router>
+    );
+
+    render(tree);
 });

@@ -1,22 +1,25 @@
-import Loadable from './Loadable';
-// import Topics from './Topics';
-// import ReduxMovies from './ReduxMovies';
+// import Loadable from './Loadable';
+import Movies from './Movies';
+import ReduxMovies from './ReduxMovies';
+import ContextMovies from './ContextMovies';
+import MobxMovies from './MobxMovies';
+import ConsumerExample from './ConsumerExample';
 
-const Movies = Loadable({
-    loader: () => import(/* webpackChunkName: "bas" */ './Movies'),
-});
-
-const ReduxMovies = Loadable({
-    loader: () => import(/* webpackChunkName: "sd" */ './ReduxMovies'),
-});
-
-const ContextMovies = Loadable({
-    loader: () => import(/* webpackChunkName: "f" */ './ContextMovies'),
-});
-
-const MobxMovies = Loadable({
-    loader: () => import(/* webpackChunkName: "g" */ './MobxMovies'),
-});
+// const Movies = Loadable({
+//     loader: () => import(/* webpackChunkName: "bas" */ './Movies'),
+// });
+//
+// const ReduxMovies = Loadable({
+//     loader: () => import(/* webpackChunkName: "sd" */ './ReduxMovies'),
+// });
+//
+// const ContextMovies = Loadable({
+//     loader: () => import(/* webpackChunkName: "f" */ './ContextMovies'),
+// });
+//
+// const MobxMovies = Loadable({
+//     loader: () => import(/* webpackChunkName: "g" */ './MobxMovies'),
+// });
 
 // const About = Loadable({
 //     loader: () => import(/* webpackChunkName: "about" */ './About'),
@@ -107,6 +110,11 @@ const routes = [
         path: '/mobx',
         component: MobxMovies,
         key: 'MobxMovies'
+    },
+    {
+        path: '/consumer',
+        component: ConsumerExample,
+        key: 'consumer'
     },
 ];
 

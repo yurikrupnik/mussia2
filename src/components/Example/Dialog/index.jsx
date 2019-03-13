@@ -1,7 +1,10 @@
-import React, {Component, PureComponent, memo} from 'react';
+import React, { Component, PureComponent, memo } from 'react';
+import PropTypes from 'prop-types';
 import renderHTML from 'react-render-html';
 import { withStyles } from '@material-ui/core/styles';
-import { Dialog, Slide, AppBar, Toolbar, IconButton, Typography, Grid } from '@material-ui/core';
+import {
+    Dialog, Slide, AppBar, Toolbar, IconButton, Typography, Grid
+} from '@material-ui/core';
 // import CloseIcon from '@material-ui/icons/Close';
 
 const styles = {
@@ -20,22 +23,21 @@ const styles = {
     },
 };
 
-const Transition = (props) => {
-    // console.log('Transition', props);
-
-    return <Slide direction="up" {...props} />;
-};
+const Transition = props => <Slide direction="up" {...props} />;
 
 class ShowDetailsDialog extends PureComponent {
-
     render() {
-        const { classes, isOpen, handleDialogClose, showInfo } = this.props;
+        const {
+            classes, isOpen, handleDialogClose, showInfo
+        } = this.props;
         if (!isOpen) {
             return null;
         }
-        console.log('dialog', this.props);
+        // console.log('dialog', this.props);
 
-        const { name, image, officialSite: website, summary, _embedded } = showInfo || {};
+        const {
+            name, image, officialSite: website, summary, _embedded
+        } = showInfo;
         return (
             <Dialog
                 fullScreen
@@ -60,7 +62,8 @@ class ShowDetailsDialog extends PureComponent {
                             {website && <a href={website} target={'_blank'}>Go to website</a>}
                         </Grid>
                         <Grid item xs={6}>
-                            {image && <img className={classes.image} src={image.original} alt={name} />}
+                            {image
+                            && <img className={classes.image} src={image.original} alt={name} />}
                         </Grid>
                         <Grid item xs={6}>
                             {renderHTML(summary || '')}
@@ -70,15 +73,18 @@ class ShowDetailsDialog extends PureComponent {
                                 <Grid item xs={12}>
                                     Cast
                                 </Grid>
-                                {_embedded && _embedded.cast.map(({ person: { name: personName }, character: { name: characterName, image } }) => {
-                                    return <Grid item xs key={personName}>
-                                        <div>
-                                            {personName}
-                                            <hr />
-                                            {characterName}
-                                        </div>
-                                        {image && image.medium && <img src={image.medium} alt={characterName} />}
-                                    </Grid>;
+                                {_embedded.cast.map(({ person: { name: personName }, character: { name: characterName, image } }) => {
+                                    return (
+                                        <Grid item xs key={personName}>
+                                            <div>
+                                                {personName}
+                                                <hr />
+                                                {characterName}
+                                            </div>
+                                            {image
+                                            && image.medium && <img src={image.medium} alt={characterName} />}
+                                        </Grid>
+                                    );
                                 })}
                             </Grid>
                         </Grid>
@@ -90,4 +96,16 @@ class ShowDetailsDialog extends PureComponent {
     }
 }
 
+ShowDetailsDialog.defaultProps = {
+    showInfo: {}
+};
+
+ShowDetailsDialog.propTypes = {
+    classes: PropTypes.shape({}).isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    handleDialogClose: PropTypes.func.isRequired,
+    showInfo: PropTypes.shape({})
+};
+
 export default withStyles(styles)(ShowDetailsDialog);
+export { Transition };

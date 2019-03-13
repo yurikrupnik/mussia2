@@ -16,7 +16,7 @@ const webServer = express();
 
 const assets = path.resolve(__dirname, 'assets');
 
-webServer.use(cors());
+// webServer.use(cors());
 webServer.use(express.static(assets));
 // webServer.use(morgan('dev'));
 webServer.use(express.json(), express.urlencoded({ extended: false }));

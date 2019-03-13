@@ -9,4 +9,4 @@ Providers.propTypes = {
     providers: PropTypes.arrayOf(PropTypes.func).isRequired
 };
 
-export default memo(Providers);
+export default Providers;

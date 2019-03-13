@@ -2,7 +2,7 @@ import React from 'react';
 import Providers from '../providers';
 import providers from '../../../api/providers';
 
-// jest.mock('../../../api/providers');
+jest.mock('../../../api/providers');
 
 const {
     describe,

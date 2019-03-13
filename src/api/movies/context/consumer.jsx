@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Consumer } from './context';
-// import DataContainer from '../../dataContainer';
+import Context from './context';
 
 const MoviesConsumer = ({ render }) => (
-    <Consumer>
+    <Context.Consumer>
         {props => render(props)}
-    </Consumer>
+    </Context.Consumer>
 );
 
 MoviesConsumer.propTypes = {

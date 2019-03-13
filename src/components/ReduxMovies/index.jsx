@@ -1,5 +1,6 @@
 import React, {Component, useCallback, useState} from 'react';
-import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+// import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from '../Example/Header';
 import List from '../Example/List';
@@ -9,21 +10,39 @@ import { mapToProps as showsMapToProps, dispatchActions as showsActions } from '
 // import { ShowsList } from './components/ShowsList';
 // import { setModalState } from '../../redux/feature/showInfo/showInfo.actions';
 // import api from "../../api/movies/api";
-
-const data = [
-    {
-        name: 'tal',
-        age: 12
-    },
-    {
-        name: 'tamar',
-        age: 12
-    },
-    {
-        name: 'asd',
-        age: 12
-    }
-];
+//
+// const data = [
+//     {
+//         name: 'tal',
+//         age: 12
+//     },
+//     {
+//         name: 'tamar',
+//         age: 12
+//     },
+//     {
+//         name: 'asd',
+//         age: 12
+//     }
+// ];
+//
+// class ReduxMovies extends Component {
+//     render() {
+//         const { shows, toggleModal, setSearch, handleSelect } = this.props;
+//         // console.log('props', props);
+//         return (
+//             <div>
+//                 <Header title="Redux way" value={shows.query} onChange={setSearch} />
+//                 <List data={shows.data} onSelect={handleSelect} />
+//                 <Dialog
+//                     isOpen={shows.modal}
+//                     handleDialogClose={toggleModal}
+//                     showInfo={shows.selected}
+//                 />
+//             </div>
+//         );
+//     }
+// }
 
 const ReduxMovies = (props) => {
     const { shows, toggleModal, setSearch, handleSelect } = props;
@@ -41,6 +60,9 @@ const ReduxMovies = (props) => {
     );
 };
 
-export default connect(showsMapToProps, showsActions)(ReduxMovies);
+ReduxMovies.propsTypes = {
+    shows: PropTypes.shape({}).isRequired,
+    toggleModal: PropTypes.func.isRequired
+};
 
-// export default ReduxMovies;
+export default connect(showsMapToProps, showsActions)(ReduxMovies);
